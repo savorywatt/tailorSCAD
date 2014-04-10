@@ -1,0 +1,4 @@
+GitPython==0.1.7
+PyYAML==3.11
+argparse==1.2.1
+wsgiref==0.1.2

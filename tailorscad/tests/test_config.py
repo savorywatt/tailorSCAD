@@ -1,0 +1,36 @@
+import unittest
+from mock import Mock
+from mock import patch
+from mock import mock_open
+
+from tailorscad.config.config import _parse_config_file
+from tailorscad.config.config import parse_config_string
+
+
+class ConfigTestCase(unittest.TestCase):
+
+    def test_parse_config_arg(self):
+
+        d = '{"json":"obj"}'
+        fake_arg = Mock()
+        file_path = '/whatever/'
+        fake_arg.config = file_path
+        config = None
+
+        with patch('__main__.open', mock_open(read_data=d), create=True) as m:
+
+            with open(file_path) as config_file:
+                config = _parse_config_file(config_file)
+
+            m.assert_called_once_with(file_path)
+
+            self.assertIsNotNone(config)
+            self.assertTrue(config.get("json"))
+
+    def test_parse_config_string(self):
+
+        test = '{"json":"obj"}'
+
+        result = parse_config_string(test)
+
+        self.assertEqual(result['json'], "obj")

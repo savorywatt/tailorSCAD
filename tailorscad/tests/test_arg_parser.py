@@ -13,7 +13,7 @@ class TestArgParser(unittest.TestCase):
 
         args = parse_args(argv)
 
-        self.assertFalse(args)
+        self.assertFalse(args.config)
 
     def test_parse_args_inknown(self):
 
@@ -22,7 +22,7 @@ class TestArgParser(unittest.TestCase):
 
         args = parse_args(argv)
 
-        self.assertFalse(args)
+        self.assertFalse(args.config)
 
     def test_parse_args_known(self):
 
@@ -32,7 +32,7 @@ class TestArgParser(unittest.TestCase):
         args = parse_args(argv)
 
         self.assertTrue(args)
-        self.assertEqual(args, ['test'])
+        self.assertEqual(args.config, 'test')
 
     def test_parse_args_unkown_and_known(self):
         args = []
@@ -41,4 +41,4 @@ class TestArgParser(unittest.TestCase):
         args = parse_args(argv)
 
         self.assertTrue(args)
-        self.assertEqual(args, ['test'])
+        self.assertEqual(args.config, 'test')

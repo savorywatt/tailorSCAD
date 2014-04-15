@@ -1,4 +1,1 @@
-
-def render_scad(parsed_args):
-
-    pass
+from tailorscad.api import render_scad

@@ -1,0 +1,2 @@
+OPENSCAD = 'os'
+COFFEESCAD = 'cs'

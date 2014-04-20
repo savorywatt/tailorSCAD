@@ -1,6 +1,7 @@
+from os import path
 
+# This model is designed to allow async execution eventually
 
-# These models are designed to allow async execution eventually
 
 class State(object):
 
@@ -19,6 +20,35 @@ class State(object):
         return self._state.get('main')
 
     @property
+    def working_directory(self):
+
+        return self._state.get('working_directory')
+
+    @property
+    def file_location(self):
+
+        print self._state
+
+        result = ''
+        if not self.working_directory:
+            return path.join(result, self.name)
+
+        result = path.join(self.working_directory, self.name)
+
+        return result
+
+    @property
+    def file_path(self):
+
+        return self._state.get('file_path', '')
+
+    @file_path.setter
+    def file_path(self, path):
+
+        new_path = {'file_path': path}
+        self._state.update(new_path)
+
+    @property
     def scad_type(self):
 
         return self._state.get('scad_type')
@@ -27,11 +57,6 @@ class State(object):
     def output_directory(self):
 
         return self._state.get('output_directory')
-
-    @property
-    def working_directory(self):
-
-        return self._state.get('working_directory')
 
     @property
     def params(self):

@@ -1,6 +1,6 @@
 import subprocess
 
-from tailorscad.config import ScadConfig
+#from tailorscad.config import ScadConfig
 
 
 BASE_DIR = '/usr/bin/'

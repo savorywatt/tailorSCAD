@@ -14,8 +14,8 @@
 #   - Builder is then consumed by another process
 
 
-from process.load import load_state_files
-from builder import build_from_state
+from tailorscad.process.load import load_state_files
+from tailorscad.builder import build_from_state
 
 
 def process_state(state):
@@ -25,3 +25,12 @@ def process_state(state):
 
     # Make the subprocess calls to the appropriate SCAD package
     build_from_state(state)
+
+
+def process_states(states):
+    if not states:
+        print 'no states to process'
+        return
+
+    for state in states:
+        process_state(state)

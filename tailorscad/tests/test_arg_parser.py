@@ -4,25 +4,8 @@ import unittest
 from tailorscad.arg_parser import parse_args
 
 
+# TODO: Making the config require required some changes I don't like to this
 class TestArgParser(unittest.TestCase):
-
-    def test_parse_args_none(self):
-
-        args = []
-        argv = []
-
-        args = parse_args(argv)
-
-        self.assertFalse(args.config)
-
-    def test_parse_args_inknown(self):
-
-        args = []
-        argv = ['-a', 'word']
-
-        args = parse_args(argv)
-
-        self.assertFalse(args.config)
 
     def test_parse_args_known(self):
 

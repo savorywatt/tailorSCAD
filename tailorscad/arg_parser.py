@@ -7,7 +7,8 @@ def parse_args(argv):
     parser = argparse.ArgumentParser(prefix_chars='-')
 
     config_help = 'Must be a path to a tailor config file'
-    parser.add_argument('-c', '--config', type=str, help=config_help)
+    parser.add_argument('-c', '--config', type=str, help=config_help,
+                        required=True)
 
     args, unknown = parser.parse_known_args(argv)
 

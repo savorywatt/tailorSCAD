@@ -1,8 +1,14 @@
 
+clean:
+	rm -f .coverage
+	find . -name "*.py[co]" -delete
+	
 
+test: clean
+	nosetests -a '!slow'
 
-test:
-	nosetests
+coverage: clean
+	nosetests --with-coverage --cover-package tailorscad -a '!slow'
 
-coverage:
-	nosetests --with-coverage --cover-package tailorscad
+integrations: clean
+	nosetests --with-coverage --cover-package tailorscad -a slow

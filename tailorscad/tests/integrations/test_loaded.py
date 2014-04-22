@@ -4,6 +4,8 @@ import unittest
 from nose.plugins.attrib import attr
 
 from tailorscad.process.process_data import process_states
+from tailorscad.process.process_data import process_state
+
 from tailorscad.config.config import parse_states
 
 
@@ -25,7 +27,7 @@ class TestFromLoadedJSONTestCase(unittest.TestCase):
             'main': 'main.scad',
             'scad_type': 'openSCAD',
             'requires': {
-                'square': {'scad_type': 'openSCAD', 'main': 'square.scad'},
+                'sphere': {'scad_type': 'openSCAD', 'main': 'sphere.scad'},
                 'cube': {'scad_type': 'openSCAD', 'main': 'cube.scad'}},
 
             'global_params': {'cube_width': 14},
@@ -33,11 +35,20 @@ class TestFromLoadedJSONTestCase(unittest.TestCase):
             'openSCAD_params': ['--render', '--imgsize=100']}
 
         self.config.update(update)
+        self.working_directory = working_directory
+        self.output_directory = os.path.join(working_directory, 'bin')
+        self.output_files = ['sphere.stl', 'cube.stl', 'main.stl']
 
     def test_render_from_loaded_json(self):
 
         config = parse_states(self.config)
 
         process_states(config.states)
+        process_state(config.main_state)
+
+        for stl in self.output_files:
+            stl_path = os.path.join(self.output_directory, stl)
+            print 'stl_path:', stl_path
+            self.assertTrue(os.path.exists(stl_path))
 
         self.assertTrue(False)

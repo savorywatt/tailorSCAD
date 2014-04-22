@@ -23,8 +23,6 @@ def load_state_files(state):
 
     _set_state_file_path(state)
 
-    print 'file_path:', state.file_path
-
 
 def _set_state_file_path(state):
     """ This will determine the path to the file that the SCAD builder

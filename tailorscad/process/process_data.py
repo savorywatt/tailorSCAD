@@ -26,7 +26,6 @@ def process_state(state):
 
     # Make the subprocess calls to the appropriate SCAD package
     build_from_state(state)
-    print 'files built'
 
 
 def process_states(states):

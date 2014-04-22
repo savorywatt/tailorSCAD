@@ -53,8 +53,8 @@ def _parse_states(loaded_json):
         return
 
     states = []
-    global_params = loaded_json.get('global_params')
-    require_params = loaded_json.get('require_params')
+    global_params = loaded_json.get('global_params', {})
+    require_params = loaded_json.get('require_params', {})
     requires = loaded_json.get('requires')
 
     _build_directories(loaded_json)
@@ -65,7 +65,8 @@ def _parse_states(loaded_json):
             state['working_directory'] = loaded_json.get('working_directory')
 
             state_params = require_params.get(key, {})
-            state['params'] = state_params.update(global_params)
+            state_params.update(global_params)
+            state['params'] = state_params
 
             states.append(_parse_state(key, state))
 

@@ -1,6 +1,6 @@
-use <sphere.scad>
-import('/bin/square.stl')
-import('/bin/cube.stl')
+use<sphere.scad>
+//import('/bin/square.stl')
+//import('/bin/cube.stl');
 
 
 cube_width = 10;

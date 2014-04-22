@@ -31,7 +31,7 @@ class TestFromLoadedJSONTestCase(unittest.TestCase):
                 'cube': {'scad_type': 'openSCAD', 'main': 'cube.scad'}},
 
             'global_params': {'cube_width': 14},
-            'require_params': {'square': {'square_base': 3}},
+            'require_params': {'sphere': {'sphere_base': 3}},
             'openSCAD_params': ['--render', '--imgsize=100']}
 
         self.config.update(update)
@@ -56,7 +56,6 @@ class TestFromLoadedJSONTestCase(unittest.TestCase):
 
         for stl in self.output_files:
             stl_path = os.path.join(self.output_directory, stl)
-            print 'stl_path:', stl_path
             self.assertTrue(os.path.exists(stl_path))
 
         self.assertTrue(False)

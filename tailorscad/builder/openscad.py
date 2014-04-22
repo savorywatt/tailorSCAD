@@ -35,6 +35,7 @@ def build_args_from_state(state):
 
     replace = ['-D']
     if state.params:
+        print 'state params:', state.params
         replace = [':'.join((key, str(value)))
                    for key, value in state.params.iteritems()]
 

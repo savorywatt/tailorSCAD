@@ -39,6 +39,14 @@ class TestFromLoadedJSONTestCase(unittest.TestCase):
         self.output_directory = os.path.join(working_directory, 'bin')
         self.output_files = ['sphere.stl', 'cube.stl', 'main.stl']
 
+    def tearDown(self):
+        """Make sure we remove the rendered files between tests"""
+
+        for stl in self.output_files:
+            stl_path = os.path.join(self.output_directory, stl)
+
+            os.remove(stl_path)
+
     def test_render_from_loaded_json(self):
 
         config = parse_states(self.config)

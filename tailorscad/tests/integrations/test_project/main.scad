@@ -1,6 +1,6 @@
 use <square.scad>
-import('square/bin/square.stl')
-import('cube/bin/cube.stl')
+import('/bin/square.stl')
+import('/bin/cube.stl')
 
 
 cube_width = 10;

@@ -13,6 +13,3 @@ def render_scad(parsed_args):
 
     # Process Main state
     process_state(config.main_state)
-
-    print 'main_state:', main_state._state
-    print 'should have built main state'

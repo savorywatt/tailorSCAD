@@ -11,5 +11,3 @@ def build_from_state(state):
 
     if state.scad_type is COFFEESCAD:
         build_with_coffeescad(state)
-
-    print 'built with ', state.scad_type

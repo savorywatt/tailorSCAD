@@ -21,7 +21,6 @@ def build_with_openscad(state):
     print 'args:', out_call
     try:
 
-        print 'rendered output path:', state.name
         subprocess.check_call(args)
         return True
     except subprocess.CalledProcessError as (e):
@@ -34,13 +33,10 @@ def build_args_from_state(state):
     #executable = ScadConfig.open_scad if ScadConfig.open_scad else DEFAULT
     executable = 'openscad'
 
-    print state.params
     replace = ['-D']
     if state.params:
         replace = [':'.join((key, str(value)))
                    for key, value in state.params.iteritems()]
-
-    print 'replace ', replace
 
     output = os.path.join(state.output_directory, state.name + ".stl")
 

@@ -31,7 +31,7 @@ def parse_states(loaded_json):
 
     loaded_json['states'] = _parse_states(loaded_json)
 
-    main_state = {'main_file': loaded_json.get('main')}
+    main_state = {'main': loaded_json.get('main')}
     main_state['scad_type'] = loaded_json.get('scad_type')
     main_state['output_directory'] = loaded_json.get('output_directory')
     main_state['working_directory'] = loaded_json.get('working_directory')

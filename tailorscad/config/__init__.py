@@ -25,6 +25,11 @@ class ConfigData(object):
         return self._config.get('main')
 
     @property
+    def main_state(self):
+
+        return self._config.get('main_state')
+
+    @property
     def requires(self):
 
         return self._config.get('requires')

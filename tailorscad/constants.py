@@ -1,2 +1,2 @@
-OPENSCAD = 'os'
+OPENSCAD = 'openSCAD'
 COFFEESCAD = 'cs'

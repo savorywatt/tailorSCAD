@@ -24,12 +24,25 @@ def _parse_config_file(config_file):
         print str(e)
         print 'can\'t load config!'
 
+    return parse_states(loaded_json)
+
+
+def parse_states(loaded_json):
+
     loaded_json['states'] = _parse_states(loaded_json)
+
+    main_state = {'main_file': loaded_json.get('main')}
+    main_state['scad_type'] = loaded_json.get('scad_type')
+    main_state['output_directory'] = loaded_json.get('output_directory')
+    main_state['working_directory'] = loaded_json.get('working_directory')
+    main_state['params'] = loaded_json.get('global_params')
+
+    loaded_json['main_state'] = _parse_state('main', main_state)
 
     return ConfigData(loaded_json)
 
 
-# TODO: Make this obey DRY
+# TODO: Make this obey DRY and break it up, it is too big
 def _parse_states(loaded_json):
     """Creates a list of State objects with the work to be done. The main
     file is in the final position of the state list.
@@ -38,9 +51,6 @@ def _parse_states(loaded_json):
     if not loaded_json:
         print 'no json loaded cannot parse states'
         return
-
-    for key, value in loaded_json.iteritems():
-        print ':'.join((key, str(value)))
 
     states = []
     global_params = loaded_json.get('global_params')
@@ -59,14 +69,6 @@ def _parse_states(loaded_json):
 
             states.append(_parse_state(key, state))
 
-    main_state = {'main_file': loaded_json.get('main')}
-    main_state['scad_type'] = loaded_json.get('scad_type')
-    main_state['output_directory'] = loaded_json.get('output_directory')
-    main_state['working_directory'] = loaded_json.get('working_directory')
-    main_state['params'] = global_params
-
-    states.append(_parse_state('main', main_state))
-
     return states
 
 
@@ -79,6 +81,8 @@ def _build_directories(loaded_json):
         'output_directory', os.path.join(os.getcwd(), 'bin'))
     update['working_directory'] = loaded_json.get(
         'working_directory', os.getcwd())
+
+    loaded_json.update(update)
 
 
 def _parse_state(name, state):

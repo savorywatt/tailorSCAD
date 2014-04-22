@@ -8,10 +8,11 @@ from os import getcwd
 
 from git import Repo
 
+from tailorscad.process.save import make_output_dir
+
 
 def load_state_files(state):
 
-    print state.file_location
     # check if we're loading from git first
     if _is_git_file_loc(state.file_location):
 
@@ -22,21 +23,31 @@ def load_state_files(state):
 
     _set_state_file_path(state)
 
+    print 'file_path:', state.file_path
+
 
 def _set_state_file_path(state):
+    """ This will determine the path to the file that the SCAD builder
+    is supposed to call."""
 
     if _is_git_file_loc(state.file_location):
         state.file_path = path.join(getcwd(), state.name)
-    else:
+
+    if path.isfile(state.main_path):
+
         state.file_path = state.file_location
 
-    # check if the directory is readable
-    if not path.isdir(state.file_path):
-        raise Exception("Path %s is not a directory" % state.file_path)
+        # Make the output directory
+        make_output_dir(state)
+
+    else:
+        msg = "Main file not found: " + state.main_path
+        raise Exception(msg)
 
     # check if the write out directory is writeable
-    if not access(state.file_path, W_OK):
-        raise Exception("tailorscad does not have write permissions")
+    if not access(state.output_directory, W_OK):
+        msg = "no write permissions:" + state.output_directory
+        raise Exception(msg)
 
 
 # TODO: This needs to be more robust

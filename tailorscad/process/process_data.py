@@ -22,9 +22,11 @@ def process_state(state):
 
     # Pull down git files or ensure folders exist
     load_state_files(state)
+    print 'files loaded for state ', state.name
 
     # Make the subprocess calls to the appropriate SCAD package
     build_from_state(state)
+    print 'files built'
 
 
 def process_states(states):

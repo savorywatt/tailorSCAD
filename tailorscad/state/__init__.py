@@ -20,14 +20,20 @@ class State(object):
         return self._state.get('main')
 
     @property
+    def main_path(self):
+
+        if not self.working_directory:
+            return path.join('', self.main_file)
+
+        return path.join(self.working_directory, self.main_file)
+
+    @property
     def working_directory(self):
 
         return self._state.get('working_directory')
 
     @property
     def file_location(self):
-
-        print self._state
 
         result = ''
         if not self.working_directory:

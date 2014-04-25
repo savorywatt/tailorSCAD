@@ -2,6 +2,7 @@
 clean:
 	rm -f .coverage
 	find . -name "*.py[co]" -delete
+	find . -name "*.stl" -delete
 	
 
 test: clean

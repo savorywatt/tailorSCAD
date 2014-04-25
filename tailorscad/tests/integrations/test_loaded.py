@@ -31,21 +31,13 @@ class TestFromLoadedJSONTestCase(unittest.TestCase):
                 'cube': {'scad_type': 'openSCAD', 'main': 'cube.scad'}},
 
             'global_params': {'cube_width': 14},
-            'require_params': {'sphere': {'sphere_base': 3}},
+            'require_params': {'sphere': {'sphere_base': 100}},
             'openSCAD_params': ['--render', '--imgsize=100']}
 
         self.config.update(update)
         self.working_directory = working_directory
         self.output_directory = os.path.join(working_directory, 'bin')
         self.output_files = ['sphere.stl', 'cube.stl', 'main.stl']
-
-    def tearDown(self):
-        """Make sure we remove the rendered files between tests"""
-
-        for stl in self.output_files:
-            stl_path = os.path.join(self.output_directory, stl)
-
-            os.remove(stl_path)
 
     def test_render_from_loaded_json(self):
 

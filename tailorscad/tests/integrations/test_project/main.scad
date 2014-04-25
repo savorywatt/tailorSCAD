@@ -1,8 +1,12 @@
 use<sphere.scad>
-//import('/bin/square.stl')
-//import('/bin/cube.stl');
+
+translate([-100, 0, 0])
+import("./bin/sphere.stl");
+
+translate([100, 0, 0])
+import("./bin/cube.stl");
 
 
-cube_width = 10;
+cube_width = 100;
 
-simple_square(cube_width);
+simple_sphere(cube_width);

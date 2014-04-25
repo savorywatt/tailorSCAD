@@ -1,10 +1,21 @@
 
 
-square_base = 1;
 
-simple_square(square_base);
 
-module simple_square(size){
+
+
+
+
+
+
+
+
+
+sphere_base = 100;
+
+simple_sphere(sphere_base);
+
+module simple_sphere(size){
 
     sphere(size);
 

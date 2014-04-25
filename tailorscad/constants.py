@@ -1,0 +1,2 @@
+OPENSCAD = 'openSCAD'
+COFFEESCAD = 'cs'

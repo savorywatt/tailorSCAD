@@ -1,0 +1,17 @@
+#!/usr/bin/env python
+
+from os import sys
+
+from tailorscad.arg_parser import parse_args
+from tailorscad import render_scad
+
+def main():
+    """Parse the command line arguments and then initiate the rendering job.
+    """
+
+    args = parse_args(sys.argv)
+
+    render_scad(args)
+
+if __name__ == '__main__':
+    main()
